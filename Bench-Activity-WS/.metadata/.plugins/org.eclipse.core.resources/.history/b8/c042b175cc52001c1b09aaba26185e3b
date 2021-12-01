@@ -1,0 +1,100 @@
+package com.bench;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class Game 
+{
+	 enum Move {
+	        ROCK,
+	        PAPER,
+	        SCISSORS
+	    }
+	public static String getFirstPlayerMove()
+	    {
+	        Scanner scan = new Scanner(System.in);
+	        String choice = scan.next();
+	        String playerChoice = choice.toUpperCase();
+	        scan.close();
+	        if(playerChoice.equals("ROCK") || playerChoice.equals("PAPER") || playerChoice.equals("SCISSORS")){
+	            return playerChoice;
+	        }else{
+	            System.out.println("This is not Valid Move, Try again!");
+	            return "Bad Input";
+	        }
+	    }
+	 public static String getSecondPlayerMove()
+	    {
+		 Scanner scan2 = new Scanner(System.in);
+		 if(scan2.hasNext())
+		 {
+	        String choice2 = scan2.next();
+	        System.out.println(choice2);
+	        String SecPlayerChoice = choice2.toUpperCase();
+	        scan2.close();
+	        if(SecPlayerChoice.equals("ROCK") || SecPlayerChoice.equals("PAPER") || SecPlayerChoice.equals("SCISSORS")){
+	            return SecPlayerChoice;
+	        }else{
+	            System.out.println("This is not Valid Move, Try again!");
+	            return "Bad Input";
+	        }
+		 }
+		 else
+			 return "No Input";
+	    }
+	public static void main(String[] args) 
+	{
+		  System.out.println("Welcome to Rock Paper Game! \nYou are the first player. \nEnter Your Move:  ");
+	      System.out.println("ROCK");
+	      System.out.println("PAPER");
+	      System.out.println("SCISSORS");
+	 
+	        String firstPlayerMove = getFirstPlayerMove();
+	        System.out.println("first move is: "+ firstPlayerMove);
+	        if(!firstPlayerMove.equals("Bad Input")) 
+	        {
+	            //String computerMove = getComputerMove();
+	        System.out.println(" second player. \nEnter Your Move:  ");
+	  	      System.out.println("ROCK");
+	  	      System.out.println("PAPER");
+	  	      System.out.println("SCISSORS");
+		      String secondPlayerMove = getSecondPlayerMove();
+	          System.out.println("second move is: " + secondPlayerMove);
+	            if (firstPlayerMove.equals(secondPlayerMove)) {
+	                System.out.println("Game is Tie !!");
+	            }
+	            // If playerMove is ROCK         
+	            else if (firstPlayerMove.equals(Move.ROCK.name())) {
+	                if(secondPlayerMove.equals(Move.PAPER.name())) {
+	                    System.out.println("Second player Wins");
+	                    System.out.println("Better Luck Next Time!");
+	                }else {
+	                    System.out.println("First Player Win!");
+	                    System.out.println("OOhhOO, Congratulations!!! ");
+	                }
+	            }
+	            // If playerMove is PAPER
+	            else if (firstPlayerMove.equals(Move.PAPER.name())) {
+	                if(secondPlayerMove.equals(Move.SCISSORS.name())) { 
+	                    System.out.println("Second Player Wins");
+	                    System.out.println("Better Luck Next Time!");
+	                }
+	                else { 
+	                    System.out.println("You Win!");
+	                    System.out.println("OOhhOO, Congratulations!!! ");
+	                }
+	            }
+	            // If playerMove is SCISSORS    
+	            else {
+	                if(secondPlayerMove.equals(Move.ROCK.name())) {
+	                    System.out.println("Second Player Wins");
+	                    System.out.println("Better Luck Next Time!");
+	                }
+	                else { 
+	                    System.out.println("You Win!");
+	                    System.out.println("OOhhOO, Congratulations!!! ");
+	                }
+	            }
+	        }
+	}
+}
