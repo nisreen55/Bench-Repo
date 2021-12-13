@@ -1,0 +1,10 @@
+package com.bench;
+
+public class StaircaseofRecursion {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
