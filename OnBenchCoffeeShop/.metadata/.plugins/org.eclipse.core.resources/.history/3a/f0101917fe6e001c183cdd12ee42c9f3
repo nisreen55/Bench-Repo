@@ -1,0 +1,182 @@
+package com.bench;
+
+import java.awt.MenuItem;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class CoffeeShop 
+{
+	private String Name = "Happy Meal";
+	private MenuItems menuItems;
+	public String[] orders = new String[20];
+	public List<MenuItems> orderList = new ArrayList<>();
+
+	
+	public String[] menuItemsFood = {"Fried chicken", "Burgers", "Chicken soup", "Spaghetti with meatballs", "Mashed potatoes",
+									"Mac & cheese"};
+	public String[] menuItemsDrink = {"Orange Juice", "Grape Juice", "Coke"};
+
+	private String[] tempFood = new String[10];
+	public List<MenuItems> tempFoods = new ArrayList<>();
+	public List<MenuItems> tempDrinks = new ArrayList<>();
+
+
+	private String[] tempDrink = new String[10];
+	
+	public CoffeeShop( ) {
+		super();
+	}
+	
+	public CoffeeShop(String name, MenuItems menuItems, String[] orders) {
+		super();
+		Name = name;
+		this.menuItems = menuItems;
+		this.orders = orders;
+	}
+	
+	
+	public String getName() {
+		return Name;
+	}
+
+	public void setName(String name) {
+		Name = name;
+	}
+
+	public MenuItems getMenuItems() {
+		return menuItems;
+	}
+
+	public void setMenuItems(MenuItems menuItems) {
+		this.menuItems = menuItems;
+	}
+
+	public String[] getOrders() {
+		return orders;
+	}
+
+	public void setOrders(String[] orders) {
+		this.orders = orders;
+	}
+
+	public List<MenuItems> addOrder(String itemName, int itemType, double itemPrice ) 
+	{
+		App app = new App();
+		if(itemType == 1 )
+		{
+			//List<MenuItems> food = app.addFoodtems();
+			//System.out.println("test   "+food);
+			//String itemType = food..getMenuItemType();
+			//String itemName = menuItems.getMenuItemType().get(customerOrder-1);
+			//System.out.println(itemName);
+			int itemsNum =orderList.size();
+				System.out.println("length :"+itemsNum);
+			if(itemsNum != 0)
+			{
+				for(int i = 0; i < itemsNum; i++)
+				{
+					//if (orderList.get(i) == null)
+					//{
+					orderList.add(new MenuItems(i+1,"Food" , itemName, itemPrice));
+					//for(int j = 0; j < tempFoods.size(); j++)
+						//if (tempFoods.get(j) == null)
+						//{
+						//	tempFoods.add(new MenuItems(i+1,"Food" , itemName, itemPrice));
+						//break;
+						//}
+					System.out.println("printing inside addOrder "+orderList.get(i).getMenuItemName()+ " "+orderList.get(i).getMenuItemPrice() + " index:" + i);
+					//break;
+				//}
+				}
+			}
+			else
+			{
+				orderList.add(new MenuItems(1,"Food" , itemName, itemPrice));
+				//tempFoods.add(new MenuItems(1,"Food" , itemName, itemPrice));
+
+				/*for(int j = 0; j < tempFood.length; j++)
+					if (tempFood[j] == null)
+					{
+						tempFood[j] = customerOrder;
+						break;
+					}*/
+				System.out.println("printing inside addOrder first item :"+orderList.get(0).getMenuItemName()+ " "+orderList.get(0).getMenuItemPrice() + " index:" + 0);
+				//break;
+			}
+				
+		}
+		if(itemType == 2)
+		{
+			List<MenuItems> drink = app.addDrinktems();
+			int itemsNum =orderList.size();
+			System.out.println("length :"+itemsNum);
+		if(itemsNum != 0)
+		{
+		for(int i = 0; i < itemsNum; i++)
+		{
+			//if (orderList.get(i) == null)
+			//{
+				orderList.add(new MenuItems(i+1,"Drink" , itemName, itemPrice));
+				tempDrinks.add(new MenuItems(i+1,"Drink" , itemName, itemPrice));
+
+				/*for(int j = 0; j < tempFood.length; j++)
+					if (tempFood[j] == null)
+					{
+						tempFood[j] = customerOrder;
+						break;
+					}*/
+				System.out.println("printing inside addOrder "+orderList.get(i).getMenuItemName()+ " "+orderList.get(i).getMenuItemPrice() + " index:" + i);
+				//break;
+			//}
+		}
+		}
+		else
+		{
+			orderList.add(new MenuItems(1,"Drink" , itemName, itemPrice));
+			tempDrinks.add(new MenuItems(1,"Drink" , itemName, itemPrice));
+
+			/*for(int j = 0; j < tempFood.length; j++)
+				if (tempFood[j] == null)
+				{
+					tempFood[j] = customerOrder;
+					break;
+				}*/
+			System.out.println("printing inside addOrder "+orderList.get(0).getMenuItemName()+ " "+orderList.get(0).getMenuItemPrice() + " index:" + 0);
+			//break;
+		}
+		}
+		return orderList;
+	}
+
+	public List<MenuItems> listOrder() 
+	{
+		return orderList;
+	}
+	
+	public  List<MenuItems> drinkOnly() 
+	{
+		return 	tempDrinks;
+	}
+	
+	public  List<MenuItems> foodOnly() 
+	{
+		for (MenuItems food: tempFoods) 
+			System.out.println(food.getMenuItemName());
+		return tempFoods;
+	}
+
+	@Override
+	public String toString() {
+		return "CoffeeShop [Name=" + Name + ", menuItems=" + menuItems + ", orderList=" + orderList + ", menuItemsFood="
+				+ Arrays.toString(menuItemsFood) + ", menuItemsDrink=" + Arrays.toString(menuItemsDrink) + ", tempFood="
+				+ Arrays.toString(tempFood) + ", tempDrink=" + Arrays.toString(tempDrink) + "]";
+	}
+	
+
+	
+	
+	
+	
+	
+}

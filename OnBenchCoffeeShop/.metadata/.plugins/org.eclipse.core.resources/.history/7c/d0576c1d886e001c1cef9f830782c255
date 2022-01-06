@@ -1,0 +1,6 @@
+package com.bench;
+
+public enum MenuItems 
+{
+ FFOD, DRINK
+}

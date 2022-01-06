@@ -1,0 +1,126 @@
+package com.bench;
+
+import java.util.Arrays;
+
+public class CoffeeShop 
+{
+	private String Name = "Happy Meal";
+	public String[] menuItemsFood = {"Fried chicken", "Burgers", "Chicken soup", "Spaghetti with meatballs", "Mashed potatoes",
+									"Mac & cheese"};
+	public String[] menuItemsDrink = {"Orange Juice", "Grape Juice", "Coke"};
+
+	public String[] orders = new String[20];
+	public String[] tempFood = new String[10];
+	public String[] tempDrink = new String[10];
+	
+	public CoffeeShop( ) {
+		super();
+	}
+	
+	public CoffeeShop(String name, String[] menuItemsFood, String[] orders) {
+		super();
+		Name = name;
+		this.menuItemsFood = menuItemsFood;
+		this.orders = orders;
+	}
+	
+	
+	public String getName() {
+		return Name;
+	}
+
+	public void setName(String name) {
+		Name = name;
+	}
+
+	public String[] getMenuItems() {
+		return menuItemsFood;
+	}
+
+	public void setMenuItems(String[] menuItemsFood) {
+		this.menuItemsFood = menuItemsFood;
+	}
+
+	public String[] getOrders() {
+		return orders;
+	}
+
+	public void setOrders(String[] orders) {
+		this.orders = orders;
+	}
+
+	public String[] addOrder(int customerOrder, int customerItemType) 
+	{
+		if(customerItemType == 1)
+		{
+			String itemName = menuItemsFood[customerOrder-1];
+			System.out.println(itemName);
+			int itemsNum =orders.length;
+				
+			for(int i = 0; i < itemsNum; i++)
+			{
+				if (orders[i] == null)
+				{
+					orders[i] = itemName;
+					for(int j = 0; j < tempFood.length; j++)
+						if (tempFood[j] == null)
+						{
+							tempFood[j] = itemName;
+							break;
+						}
+					System.out.println("printing inside addOrder "+orders[i] + " index:" + i);
+					break;
+				}
+			}
+		}
+		if(customerItemType == 2)
+		{
+			String itemName = menuItemsDrink[customerOrder-1];
+			System.out.println(itemName);
+			int itemsNum =orders.length;
+				
+			for(int i = 0; i < itemsNum; i++)
+			{
+				if (orders[i] == null)
+				{
+					orders[i] = itemName;
+					for(int j = 0; j < tempDrink.length; j++)
+						if (tempDrink[j] == null)
+						{
+							tempDrink[j] = itemName;
+							break;
+						}
+					System.out.println("printing inside addOrder "+orders[i] + " index:" + i);
+					break;
+				}
+			}
+		}
+		return orders;
+	}
+
+	public String[] listOrder() 
+	{
+		return orders;
+	}
+	
+	public String[] drinkOnly() 
+	{
+		return 	tempDrink;
+	}
+	
+	public String[] foodOnly() 
+	{
+		return tempFood;
+	}
+	@Override
+	public String toString() {
+		return "CoffeeShop [Name=" + Name + ", menuItems=" + Arrays.toString(menuItemsFood) + ", orders="
+				+ Arrays.toString(orders) + "]";
+	}
+
+	
+	
+	
+	
+	
+}

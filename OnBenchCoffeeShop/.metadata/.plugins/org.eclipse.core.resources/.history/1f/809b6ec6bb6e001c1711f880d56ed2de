@@ -1,0 +1,229 @@
+package com.bench;
+
+import java.awt.MenuItem;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class App 
+
+{
+	public static void displayMainMenu()
+	{
+		System.out.println ("Please choose from our menu : ");
+		System.out.println ("1 : Add Food ");
+		System.out.println ("2 : Add Drink ");
+		System.out.println ("3 : View Order ");
+		System.out.println ("4 : View Food ");
+		System.out.println ("5 : View Drink ");
+		System.out.println ("6 : View Amount ");
+		System.out.println ("7 : View Cheapest Item ");
+		System.out.println ("9 : Exit ");
+	}
+	
+	public static void displayFoodSubMenu()
+	{
+		List<MenuItems> foods = addFoodtems();
+		for (int i = 0; i < foods.size(); i++)
+			System.out.println(i+1 + ". "+foods.get(i).getMenuItemName()+ "    "+foods.get(i).getMenuItemPrice());
+		System.out.println("0 . Exit");
+	}
+	
+	public static void displayDrinkSubMenu()
+	{
+		List<MenuItems> drinks = addDrinktems();
+		for (int i = 0; i < drinks.size(); i++)
+			System.out.println(i+1 + ". "+drinks.get(i).getMenuItemName()+ "    "+drinks.get(i).getMenuItemPrice());
+		System.out.println("0 . Exit");
+	}
+	
+	public static List<MenuItems> addFoodtems()
+	{
+		List<MenuItems> menuFoodItems = new ArrayList<>();
+		menuFoodItems.add(new MenuItems("Food","Fried chicken", 12.0 ));
+		menuFoodItems.add(new MenuItems("Food","Burgers", 11.0 ));
+		menuFoodItems.add(new MenuItems("Food","Chicken soup", 5.0));
+		menuFoodItems.add(new MenuItems("Food","Spaghetti with meatballs", 3.0));
+		menuFoodItems.add(new MenuItems("Food","Mashed potatoes", 2.0  ));
+		menuFoodItems.add(new MenuItems("Food","Mac & cheese", 8.0 ));
+		return menuFoodItems;
+	}
+	
+	public static List<MenuItems> addDrinktems()
+	{
+		List<MenuItems> menuDrinkItems = new ArrayList<>();
+		menuDrinkItems.add(new MenuItems("Drink","Orange Juice", 7.0 ));
+		menuDrinkItems.add(new MenuItems("Drink","Grape Juice", 7.0 ));
+		menuDrinkItems.add(new MenuItems("Drink","Coke", 5.0));
+		return menuDrinkItems;
+	}
+	
+	
+public String[] menuItemsDrink = {"Orange Juice", "Grape Juice", "Coke"};
+
+	public static void main(String[] args)
+	{
+		CoffeeShop coffeeShop = new CoffeeShop();
+		
+		int foodLen = addFoodtems().size();	//coffeeShop.menuItemsFood.length;
+		int drinkLen = addDrinktems().size();
+		System.out.println(foodLen + " " + drinkLen);
+		Boolean runMainMenu = true;
+		Boolean runSubMenu = true;
+		
+		System.out.println ("Welcome to "+ coffeeShop.getName());
+		displayMainMenu();
+
+		Scanner scanner = new Scanner(System.in);
+		while(runMainMenu)
+		{
+			int customerItemType = scanner.nextInt();
+			if(customerItemType != 0)
+			{
+				switch(customerItemType)
+				{
+					case 1: 
+					{
+						displayFoodSubMenu();
+						runSubMenu = true;
+						Scanner sc = new Scanner(System.in);
+						while(runSubMenu) 
+						{
+							int customerOrder = sc.nextInt(); 
+							if(customerOrder != 0)
+							{
+								String[] custOrder = coffeeShop.addOrder(customerOrder, customerItemType);
+								System.out.println( "You added : " );
+								for (int i = 0; i < custOrder.length; i++) 
+									if(custOrder[i] != null)
+										System.out.println(custOrder[i]);
+							}
+							else
+							{
+								System.out.println( "Return to main menu " );
+								displayMainMenu();
+							}
+
+							switch(customerOrder)
+							{
+								case 0: 
+								{
+									runSubMenu = false;
+									System.out.println( "Thanks for ordering Food" );				
+									break;
+								}
+							}
+						} //while sub
+						break;
+					} //case 1:
+					case 2: 
+					{
+						
+						displayDrinkSubMenu();
+						runSubMenu = true;
+						Scanner sc = new Scanner(System.in);
+						while(runSubMenu) 
+						{
+							int customerOrder = sc.nextInt(); 
+							if(customerOrder != 0)
+							{
+								String[] custOrder = coffeeShop.addOrder(customerOrder, customerItemType);
+								System.out.println( "You added : " );
+								for (int i = 0; i < custOrder.length; i++) 
+									if(custOrder[i] != null)
+										System.out.println(custOrder[i]);
+							}
+							else
+							{
+								System.out.println( "Return to main menu " );
+								displayMainMenu();
+							}
+
+							switch(customerOrder)
+							{
+								case 0: 
+								{
+									runSubMenu = false;
+									System.out.println( "Thanks for ordering Drink" );				
+									break;
+								}
+							}
+						} //while sub
+						break;
+					} //case 2:
+					case 3: 
+					{
+						String[] custOrder = coffeeShop.listOrder();
+						for (int i = 0; i < custOrder.length; i++) 
+							if(custOrder[i] != null)
+							{
+								System.out.println(custOrder[i]);
+							}
+							else
+							{
+								if(custOrder[0] == null)
+								{
+									System.out.println("Please add itemes to your order..");
+									break;
+								}
+							}
+						break;
+					} //case 3
+					case 4: 
+					{
+						String[] custOrder = coffeeShop.foodOnly();
+						for (int i = 0; i < custOrder.length; i++) 
+							if(custOrder[i] != null)
+							{
+								System.out.println(custOrder[i]);
+							}
+							else
+							{
+								if(custOrder[0] == null)
+								{
+									System.out.println("Please add food to your order..");
+									break;
+								}
+							}
+						break;
+					} //case 4
+					case 5: 
+					{
+						String[] custOrder = coffeeShop.drinkOnly();
+						for (int i = 0; i < custOrder.length; i++) 
+							if(custOrder[i] != null)
+							{
+								System.out.println(custOrder[i]);
+							}
+							else
+							{
+								if(custOrder[0] == null)
+								{
+									System.out.println("Please add drink to your order..");
+									break;
+								}
+							}
+						break;
+					} //case 5
+				}//switch(customerItemType)
+			} //if
+			
+			switch(customerItemType)
+			{
+				case 9: 
+				{
+					runMainMenu = false;
+					System.out.println( "Thanks for using my app. Good bye.." );				
+					break;
+				}
+			}
+				
+			} //while main
+		} //main method
+
+
+		
+
+	}//class
+	
+
