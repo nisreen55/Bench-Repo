@@ -1,0 +1,39 @@
+package validePINproject;
+
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+
+public class ValidatePIN 
+{
+	// Function to validate the pin code.
+    public static boolean isValidPin(String pinCode)
+    {
+ 
+        // Regex to check valid pin code.
+        String regex = "^([0-9]{4}|[0-9]{6})$";
+ 
+        Pattern p = Pattern.compile(regex);
+ 
+        if (pinCode == null) {
+            return false;
+        }
+ 
+        // Pattern class contains matcher() method
+        // to find matching between given pin code
+        // and regular expression.
+        Matcher m = p.matcher(pinCode);
+ 
+       return m.matches();
+    }
+public static void main(String[] args) 
+{
+	Scanner sc = new Scanner(System.in);
+	System.out.println("Please enter your PIN:");
+
+	String input = sc.next();
+	System.out.println(isValidPin(input));
+	
+}
+}
